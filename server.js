@@ -62,14 +62,14 @@ const Task = mongoose.model('Task', taskSchema);
 
 // - - - - = = = = Controller = = = = - - - - 
 const taskController = {
-  index(request, response) {
+  index: (request, response) => {
 
     Task.find({})
       .then(tasks => response.json(tasks))
       .catch(error => console.log(error));
 
   },
-  create(request, response) {
+  create: (request, response) => {
 
     Task.create(request.body)
       .then(task => response.json(task))
@@ -89,6 +89,25 @@ app
 
 
 
+// - - - - = = = = ALTERNATE FOR: Routes+Controllers = = = = - - - - 
+// app 
+// .get('/tasks', (request, response) => {
+  
+//   Task.find({})
+//     .then(tasks => response.json(tasks))
+//     .catch(error => console.log(error));  
+
+// })
+// .post('/tasks', (request, response) => {
+  
+//   Task.create(request.body)
+//     .then(task => response.json(task))
+//     .catch(error => console.log(error));
+
+// })
+
+
+
 // - - - - = = = = Server Listener = = = = - - - - 
-const port = 8000;
+const port = 5000;
 app.listen(port, ()=> console.log(`Express server listening on port ${port}`));
